@@ -4,4 +4,9 @@
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
     <string name="recommendation_tab">Recommendation Tab</string>
+    <string name="recipe_image">Recipe image</string>
+    <string name="coffee_title">Coffee title</string>
+    <string name="coffee_description">Coffee description</string>
+    <string name="ingredients">Ingredients</string>
+    <string name="preparation_steps">Preparation Steps</string>
 </resources>

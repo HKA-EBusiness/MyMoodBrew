@@ -34,7 +34,7 @@ object DataSeeder {
                 ingredients = "Espresso, Milk",
                 preparationSteps = "Brew espresso, Steam milk, Foam milk, Combine",
                 recommendedDuration = 7,
-                imageUrl = "https://example.com/cappuccino.jpg"
+                imageUrl = "https://media.istockphoto.com/id/505168330/de/foto/tasse-caf%C3%A9-latte-macchiato-mit-kaffeebohnen-und-zimt.jpg?s=612x612&w=0&k=20&c=sTGL_8pXFroBXotCW4KcGCjLf5X1Prs0jh6hqdPc2FI="
             )
             coffeeRecipeDao.insert(cappuccinoRecipe)
 
@@ -45,7 +45,7 @@ object DataSeeder {
                 ingredients = "Espresso, Hot water",
                 preparationSteps = "Brew espresso, Add hot water",
                 recommendedDuration = 5,
-                imageUrl = "https://example.com/americano.jpg"
+                imageUrl = "https://www.roastmarket.de/magazin/wp-content/uploads/2016/05/Caffe-Americano-in-Tasse.jpg"
             )
             coffeeRecipeDao.insert(americanoRecipe)
 
@@ -56,7 +56,7 @@ object DataSeeder {
                 ingredients = "Espresso, Milk, Chocolate syrup",
                 preparationSteps = "Brew espresso, Steam milk, Add chocolate syrup, Combine",
                 recommendedDuration = 8,
-                imageUrl = "https://example.com/mocha.jpg"
+                imageUrl = "https://images.immediate.co.uk/production/volatile/sites/2/2021/11/Mocha-1fc71f7.png?resize=768,574"
             )
             coffeeRecipeDao.insert(mochaRecipe)
 
@@ -69,7 +69,7 @@ object DataSeeder {
                 calories = 200,
                 fatContent = 7.0,
                 sugar = 22.0,
-                imageUrl = "https://example.com/icedlatte.jpg",
+                imageUrl = "https://cdn11.bigcommerce.com/s-5ljyj9oebs/images/stencil/600x600/products/2819/18201/P071422183748_1__66386.1690917599.jpg?c=2",
                 recipeId = 2 // refers to the "Americano" recipe
             )
             coffeeVariationDao.insert(icedLatteVariation)
@@ -82,7 +82,7 @@ object DataSeeder {
                 calories = 230,
                 fatContent = 6.0,
                 sugar = 28.0,
-                imageUrl = "https://example.com/caramelmacchiato.jpg",
+                imageUrl = "https://dinnerthendessert.com/wp-content/uploads/2023/10/Caramel-Macchiato-10.jpg",
                 recipeId = 2 // refers to the "Americano" recipe
             )
             coffeeVariationDao.insert(caramelMacchiatoVariation)
@@ -95,7 +95,7 @@ object DataSeeder {
                 calories = 5,
                 fatContent = 0.0,
                 sugar = 0.0,
-                imageUrl = "https://example.com/blackcoffee.jpg",
+                imageUrl = "https://wakeupcoffee.ca/wp-content/uploads/2024/02/img-How-to-Make-Black-Coffee-Taste-Good-1.webp",
                 recipeId = 1 // refers to the "Cappuccino" recipe
             )
             coffeeVariationDao.insert(blackCoffeeVariation)

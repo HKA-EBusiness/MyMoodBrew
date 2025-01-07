@@ -1,7 +1,6 @@
 package com.example.mymoodbrew_v2.ui.home
 
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.mymoodbrew_v2.dao.RecommendationDao
 import com.example.mymoodbrew_v2.dao.WeeklyRecipeDao
@@ -15,8 +14,13 @@ class HomeViewModel @Inject constructor(
     private val weeklyRecipeDao: WeeklyRecipeDao
 ) : ViewModel() {
 
-    // Get recommended coffee for today
+    // Get recommended coffee
     fun getRecommendedCoffee(userId: Int): LiveData<CoffeeRecipe> {
         return recommendationDao.getRandomRecommendedCoffee(userId)
+    }
+
+    // Get weekly special
+    fun getWeeklySpecial(): LiveData<CoffeeRecipe> {
+        return weeklyRecipeDao.getRandomRecommendedCoffee()
     }
 }
