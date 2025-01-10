@@ -23,9 +23,19 @@ class CoffeeVariationAdapter : ListAdapter<CoffeeVariation, CoffeeVariationAdapt
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val nameTextView: TextView = itemView.findViewById(R.id.textViewName)
+        private val descriptionTextView: TextView = itemView.findViewById(R.id.textViewDescription)
+        private val caffeineContentTextView: TextView = itemView.findViewById(R.id.textViewCaffeineContent)
+        private val caloriesTextView: TextView = itemView.findViewById(R.id.textViewCalories)
+        private val fatContentTextView: TextView = itemView.findViewById(R.id.textViewFatContent)
+        private val sugarTextView: TextView = itemView.findViewById(R.id.textViewSugar)
 
         fun bind(variation: CoffeeVariation) {
             nameTextView.text = variation.name
+            descriptionTextView.text = variation.description
+            caffeineContentTextView.text = "Caffeine Content: ${variation.caffeineContent} mg"
+            caloriesTextView.text = "Calories: ${variation.calories} kcal"
+            fatContentTextView.text = "Fat Content: ${variation.fatContent} g"
+            sugarTextView.text = "Sugar: ${variation.sugar} g"
         }
     }
 
