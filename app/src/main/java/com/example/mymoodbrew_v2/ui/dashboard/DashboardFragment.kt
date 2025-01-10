@@ -14,7 +14,6 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.mymoodbrew_v2.databinding.FragmentCoffeeVariationListBinding
-import com.example.mymoodbrew_v2.databinding.FragmentDashboardBinding
 import com.example.mymoodbrew_v2.models.CoffeeVariation
 import dagger.hilt.android.AndroidEntryPoint
 
