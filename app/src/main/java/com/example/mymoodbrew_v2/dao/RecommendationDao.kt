@@ -21,7 +21,7 @@ interface RecommendationDao {
         ORDER BY RANDOM()
         LIMIT 1
     """)
-    fun getRandomRecommendedCoffee(userId: Int): LiveData<CoffeeRecipe>
+    fun getRandomRecommendedCoffee(userId: Int): CoffeeRecipe
 
     @Insert
     fun insert(recommendation: Recommendation)

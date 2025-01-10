@@ -1,6 +1,7 @@
 package com.example.mymoodbrew_v2.ui.home
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,6 +13,7 @@ import coil.load
 import com.example.mymoodbrew_v2.R
 import com.example.mymoodbrew_v2.models.CoffeeRecipe
 import dagger.hilt.android.AndroidEntryPoint
+import java.net.URLEncoder
 
 @AndroidEntryPoint
 class RecommendationFragment : Fragment() {

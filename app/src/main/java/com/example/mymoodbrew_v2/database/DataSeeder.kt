@@ -15,6 +15,8 @@ import kotlinx.coroutines.launch
 
 object DataSeeder {
     fun seedDatabase(db: AppDatabase) {
+        db.clearAllTables()
+
         CoroutineScope(Dispatchers.IO).launch {
             val coffeeRecipeDao = db.coffeeRecipeDao()
             val coffeeVariationDao = db.coffeeVariationDao()

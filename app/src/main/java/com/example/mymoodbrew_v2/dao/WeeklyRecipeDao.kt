@@ -20,7 +20,7 @@ interface WeeklyRecipeDao {
         ORDER BY RANDOM()
         LIMIT 1
     """)
-    fun getRandomRecommendedCoffee(): LiveData<CoffeeRecipe>
+    fun getRandomRecommendedCoffee(): CoffeeRecipe
 
     @Insert
     fun insert(weeklyRecipe: WeeklyRecipe)

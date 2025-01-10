@@ -56,7 +56,7 @@ class WeeklySpecialFragment : Fragment() {
         recipePreparation: TextView
     ) {
         recipeTitle.text = recipe.title
-        recipeDescription.text = recipe.description
+        recipeDescription.text = "Description: ${recipe.description}"
         recipeIngredients.text = "Ingredients: ${recipe.ingredients}"
         recipePreparation.text = "Preparation: ${recipe.preparationSteps}"
 
