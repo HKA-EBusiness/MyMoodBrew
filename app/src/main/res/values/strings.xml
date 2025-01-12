@@ -9,4 +9,12 @@
     <string name="coffee_description">Coffee description</string>
     <string name="ingredients">Ingredients</string>
     <string name="preparation_steps">Preparation Steps</string>
+    <string name="add_coffee_variation">Add Coffee Variation</string>
+    <string name="coffee_variation_name">Name</string>
+    <string name="coffee_variation_desc">Description</string>
+    <string name="caffeine_content">Caffeine Content (mg)\"</string>
+    <string name="calories">Calories (kcal)</string>
+    <string name="fat_content">Fat Content (g)</string>
+    <string name="sugar">Sugar (g)</string>
+    <string name="add_button">Add</string>
 </resources>

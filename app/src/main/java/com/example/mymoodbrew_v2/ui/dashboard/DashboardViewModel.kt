@@ -27,4 +27,11 @@ class CoffeeVariationViewModel @Inject constructor(
             _coffeeVariations.postValue(variations)
         }
     }
+
+    fun addCoffeeVariation(variation: CoffeeVariation) {
+        viewModelScope.launch(Dispatchers.IO) {
+            coffeeVariationDao.insert(variation)
+            loadCoffeeVariations() // Reload the list
+        }
+    }
 }

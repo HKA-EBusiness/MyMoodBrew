@@ -6,13 +6,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
+import android.widget.Button
+import android.widget.EditText
 import android.widget.ListView
 import android.widget.TextView
+import androidx.compose.material3.Button
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.mymoodbrew_v2.R
 import com.example.mymoodbrew_v2.databinding.FragmentCoffeeVariationListBinding
 import com.example.mymoodbrew_v2.models.CoffeeVariation
 import dagger.hilt.android.AndroidEntryPoint
@@ -44,6 +48,45 @@ class DashboardFragment : Fragment() {
         }
 
         coffeeVariationViewModel.loadCoffeeVariations()
+
+        // Set up Floating Action Button
+        binding.fabAddCoffeeVariation.setOnClickListener {
+            showAddCoffeeVariationDialog()
+        }
+    }
+
+    private fun showAddCoffeeVariationDialog() {
+        val dialogView = LayoutInflater.from(requireContext()).inflate(R.layout.add_coffee_variation_dialog, null)
+
+        val dialog = androidx.appcompat.app.AlertDialog.Builder(requireContext())
+            .setView(dialogView)
+            .create()
+
+        dialogView.findViewById<Button>(R.id.buttonAdd).setOnClickListener {
+            val name = dialogView.findViewById<EditText>(R.id.editTextName).text.toString()
+            val description = dialogView.findViewById<EditText>(R.id.editTextDescription).text.toString()
+            val caffeineContent = dialogView.findViewById<EditText>(R.id.editTextCaffeineContent).text.toString().toDoubleOrNull() ?: 0.0
+            val calories = dialogView.findViewById<EditText>(R.id.editTextCalories).text.toString().toIntOrNull() ?: 0
+            val fatContent = dialogView.findViewById<EditText>(R.id.editTextFatContent).text.toString().toDoubleOrNull() ?: 0.0
+            val sugar = dialogView.findViewById<EditText>(R.id.editTextSugar).text.toString().toDoubleOrNull() ?: 0.0
+
+            val newVariation = CoffeeVariation(
+                variationId = 0, // Let Room auto-generate the ID
+                name = name,
+                description = description,
+                caffeineContent = caffeineContent,
+                calories = calories,
+                fatContent = fatContent,
+                sugar = sugar,
+                imageUrl = "", // Optionally add image handling
+                recipeId = 0 // Set a default or user-specified recipeId
+            )
+
+            coffeeVariationViewModel.addCoffeeVariation(newVariation)
+            dialog.dismiss()
+        }
+
+        dialog.show()
     }
 
     override fun onDestroyView() {
