@@ -34,6 +34,13 @@ class WeeklySpecialFragment : Fragment() {
         val recipeIngredients: TextView = view.findViewById(R.id.recipe_ingredients)
         val recipePreparation: TextView = view.findViewById(R.id.recipe_preparation)
 
+        recipeTitle.textSize = 20f
+        recipeDescription.textSize = 16f
+        recipeIngredients.textSize = 14f
+        recipePreparation.textSize = 14f
+
+        recipeTitle.setTextColor(resources.getColor(R.color.black, null))
+
         // Fetch data from ViewModel
         homeViewModel.getWeeklySpecial().observe(viewLifecycleOwner) { recipe ->
             updateUI(

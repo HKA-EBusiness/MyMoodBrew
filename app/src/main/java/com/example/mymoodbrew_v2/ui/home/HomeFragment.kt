@@ -35,9 +35,13 @@ class HomeFragment : Fragment() {
         // Link TabLayout with ViewPager2
         TabLayoutMediator(binding.tabLayout, binding.viewPager) { tab, position ->
             tab.text = when (position) {
-                0 -> "Recommendation"
+                0 -> "Your Recommendation"
                 1 -> "Weekly Special"
                 else -> null
+            }
+            tab.view.apply {
+                // Example: change tab text appearance
+                // setBackgroundColor(ContextCompat.getColor(context, R.color.teal_700))
             }
         }.attach()
     }

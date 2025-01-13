@@ -5,16 +5,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.EditText
-import android.widget.ListView
-import android.widget.TextView
-import androidx.compose.material3.Button
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.mymoodbrew_v2.R
 import com.example.mymoodbrew_v2.databinding.FragmentCoffeeVariationListBinding
@@ -42,6 +36,7 @@ class DashboardFragment : Fragment() {
         val adapter = CoffeeVariationAdapter()
         binding.recyclerViewCoffeeVariations.adapter = adapter
         binding.recyclerViewCoffeeVariations.layoutManager = LinearLayoutManager(requireContext())
+        binding.recyclerViewCoffeeVariations.itemAnimator = androidx.recyclerview.widget.DefaultItemAnimator()
 
         coffeeVariationViewModel.coffeeVariations.observe(viewLifecycleOwner) { variations ->
             adapter.submitList(variations)
@@ -60,6 +55,7 @@ class DashboardFragment : Fragment() {
 
         val dialog = androidx.appcompat.app.AlertDialog.Builder(requireContext())
             .setView(dialogView)
+            .setTitle("Add a New Coffee Variation")
             .create()
 
         dialogView.findViewById<Button>(R.id.buttonAdd).setOnClickListener {

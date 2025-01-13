@@ -26,7 +26,6 @@ class MyMoodBrew : Application() {
 
         CoroutineScope(Dispatchers.IO).launch {
             try {
-                // Seed the database using the injected database instance
                 DataSeeder.seedDatabase(appDatabase)
 
                 Log.d("MyMoodBrew", "Database initialized successfully")

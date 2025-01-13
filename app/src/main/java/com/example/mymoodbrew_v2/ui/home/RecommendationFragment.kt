@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import coil.load
 import com.example.mymoodbrew_v2.R
+import com.example.mymoodbrew_v2.databinding.FragmentRecommendationBinding
 import com.example.mymoodbrew_v2.models.CoffeeRecipe
 import dagger.hilt.android.AndroidEntryPoint
 import java.net.URLEncoder
@@ -19,6 +20,8 @@ import java.net.URLEncoder
 class RecommendationFragment : Fragment() {
 
     private val homeViewModel: HomeViewModel by viewModels()
+    private var _binding: FragmentRecommendationBinding? = null
+    private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -29,25 +32,35 @@ class RecommendationFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        _binding = FragmentRecommendationBinding.bind(view)
 
-        val recipeImage: ImageView = view.findViewById(R.id.recipe_image)
-        val recipeTitle: TextView = view.findViewById(R.id.recipe_title)
-        val recipeDescription: TextView = view.findViewById(R.id.recipe_description)
-        val recipeIngredients: TextView = view.findViewById(R.id.recipe_ingredients)
-        val recipePreparation: TextView = view.findViewById(R.id.recipe_preparation)
+        val recipeImage: ImageView = binding.recipeImage
+        val recipeTitle: TextView = binding.recipeTitle
+        val recipeDescription: TextView = binding.recipeDescription
+        val recipeIngredients: TextView = binding.recipeIngredients
+        val recipePreparation: TextView = binding.recipePreparation
 
         // Fetch data from ViewModel
         val userId = 1
         homeViewModel.getRecommendedCoffee(userId).observe(viewLifecycleOwner) { recipe ->
-            updateUI(
-                recipe,
-                recipeImage,
-                recipeTitle,
-                recipeDescription,
-                recipeIngredients,
-                recipePreparation
-            )
+            if (recipe != null) {
+                updateUI(
+                    recipe,
+                    recipeImage,
+                    recipeTitle,
+                    recipeDescription,
+                    recipeIngredients,
+                    recipePreparation
+                )
+            }
         }
+
+        recipeTitle.textSize = 20f
+        recipeDescription.textSize = 16f
+        recipeIngredients.textSize = 14f
+        recipePreparation.textSize = 14f
+
+        recipeTitle.setTextColor(resources.getColor(R.color.black, null))
     }
 
     private fun updateUI(
@@ -66,5 +79,10 @@ class RecommendationFragment : Fragment() {
         recipeImage.load(recipe.imageUrl) {
             crossfade(true)
         }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }

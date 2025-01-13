@@ -1,3 +1,4 @@
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -29,6 +30,11 @@ class CoffeeVariationAdapter : ListAdapter<CoffeeVariation, CoffeeVariationAdapt
         private val fatContentTextView: TextView = itemView.findViewById(R.id.textViewFatContent)
         private val sugarTextView: TextView = itemView.findViewById(R.id.textViewSugar)
 
+        init {
+            itemView.setBackgroundColor(android.graphics.Color.parseColor("#EFEFEF"))
+        }
+
+        @SuppressLint("SetTextI18n")
         fun bind(variation: CoffeeVariation) {
             nameTextView.text = variation.name
             descriptionTextView.text = variation.description
