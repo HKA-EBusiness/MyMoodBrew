@@ -21,6 +21,8 @@ class CoffeeVariationViewModel @Inject constructor(
     private val _coffeeVariations = MutableLiveData<List<CoffeeVariation>>()
     val coffeeVariations: LiveData<List<CoffeeVariation>> = _coffeeVariations
 
+    enum class SortBy { NAME, CAFFEINE }
+
     fun loadCoffeeVariations() {
         viewModelScope.launch(Dispatchers.IO) {
             val variations = coffeeVariationDao.getAll()
@@ -33,5 +35,14 @@ class CoffeeVariationViewModel @Inject constructor(
             coffeeVariationDao.insert(variation)
             loadCoffeeVariations() // Reload the list
         }
+    }
+
+    fun sortCoffeeVariations(by: SortBy) {
+        val currentList = _coffeeVariations.value ?: return
+        val sortedList = when(by) {
+            SortBy.NAME -> currentList.sortedBy { it.name }
+            SortBy.CAFFEINE -> currentList.sortedByDescending { it.caffeineContent }
+        }
+        _coffeeVariations.postValue(sortedList)
     }
 }

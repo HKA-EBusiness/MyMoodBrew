@@ -39,10 +39,6 @@ class HomeFragment : Fragment() {
                 1 -> "Weekly Special"
                 else -> null
             }
-            tab.view.apply {
-                // Example: change tab text appearance
-                // setBackgroundColor(ContextCompat.getColor(context, R.color.teal_700))
-            }
         }.attach()
     }
 

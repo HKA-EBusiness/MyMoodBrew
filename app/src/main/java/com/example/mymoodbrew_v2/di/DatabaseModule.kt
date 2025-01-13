@@ -12,6 +12,8 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import dagger.hilt.android.qualifiers.ApplicationContext
+import android.app.Application
+import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
@@ -25,12 +27,11 @@ object DatabaseModule {
 
     // Provides the AppDatabase instance
     @Provides
-    fun provideAppDatabase(context: Context): AppDatabase {
-        return Room.databaseBuilder(
-            context,
-            AppDatabase::class.java,
-            "app_database"
-        ).build()
+    @Singleton
+    fun provideAppDatabase(app: Application): AppDatabase {
+        return Room.databaseBuilder(app, AppDatabase::class.java, "my_mood_brew_db")
+            .fallbackToDestructiveMigration()
+            .build()
     }
 
     // Provides the RecommendationDao

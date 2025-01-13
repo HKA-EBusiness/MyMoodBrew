@@ -3,12 +3,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import android.widget.ImageView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.mymoodbrew_v2.models.CoffeeVariation
 import com.example.mymoodbrew_v2.R
-
 
 class CoffeeVariationAdapter : ListAdapter<CoffeeVariation, CoffeeVariationAdapter.ViewHolder>(DiffCallback()) {
 
@@ -29,6 +30,7 @@ class CoffeeVariationAdapter : ListAdapter<CoffeeVariation, CoffeeVariationAdapt
         private val caloriesTextView: TextView = itemView.findViewById(R.id.textViewCalories)
         private val fatContentTextView: TextView = itemView.findViewById(R.id.textViewFatContent)
         private val sugarTextView: TextView = itemView.findViewById(R.id.textViewSugar)
+        private val imageView: ImageView = itemView.findViewById(R.id.imageViewVariation)
 
         init {
             itemView.setBackgroundColor(android.graphics.Color.parseColor("#EFEFEF"))
@@ -42,6 +44,11 @@ class CoffeeVariationAdapter : ListAdapter<CoffeeVariation, CoffeeVariationAdapt
             caloriesTextView.text = "Calories: ${variation.calories} kcal"
             fatContentTextView.text = "Fat Content: ${variation.fatContent} g"
             sugarTextView.text = "Sugar: ${variation.sugar} g"
+            Glide.with(itemView.context)
+                .load(variation.imageUrl)
+                .placeholder(R.drawable.ic_placeholder)
+                .error(R.drawable.ic_placeholder)
+                .into(imageView)
         }
     }
 

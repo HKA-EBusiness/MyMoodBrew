@@ -43,6 +43,7 @@ class WeeklySpecialFragment : Fragment() {
 
         // Fetch data from ViewModel
         homeViewModel.getWeeklySpecial().observe(viewLifecycleOwner) { recipe ->
+            recipe ?: return@observe
             updateUI(
                 recipe,
                 recipeImage,

@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.mymoodbrew_v2.R
 import com.example.mymoodbrew_v2.databinding.FragmentCoffeeVariationListBinding
 import com.example.mymoodbrew_v2.models.CoffeeVariation
+import com.example.mymoodbrew_v2.ui.dashboard.CoffeeVariationViewModel.SortBy
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -47,6 +48,14 @@ class DashboardFragment : Fragment() {
         // Set up Floating Action Button
         binding.fabAddCoffeeVariation.setOnClickListener {
             showAddCoffeeVariationDialog()
+        }
+
+        binding.buttonSortByName.setOnClickListener {
+            coffeeVariationViewModel.sortCoffeeVariations(SortBy.NAME)
+        }
+
+        binding.buttonSortByCaffeine.setOnClickListener {
+            coffeeVariationViewModel.sortCoffeeVariations(SortBy.CAFFEINE)
         }
     }
 
