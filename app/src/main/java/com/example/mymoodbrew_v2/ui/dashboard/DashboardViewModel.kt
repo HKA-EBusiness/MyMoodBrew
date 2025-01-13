@@ -33,16 +33,18 @@ class CoffeeVariationViewModel @Inject constructor(
     fun addCoffeeVariation(variation: CoffeeVariation) {
         viewModelScope.launch(Dispatchers.IO) {
             coffeeVariationDao.insert(variation)
-            loadCoffeeVariations() // Reload the list
+            loadCoffeeVariations()
         }
     }
 
     fun sortCoffeeVariations(by: SortBy) {
-        val currentList = _coffeeVariations.value ?: return
-        val sortedList = when(by) {
-            SortBy.NAME -> currentList.sortedBy { it.name }
-            SortBy.CAFFEINE -> currentList.sortedByDescending { it.caffeineContent }
+        viewModelScope.launch(Dispatchers.Default) {
+            val currentList = _coffeeVariations.value.orEmpty()
+            val sortedList = when (by) {
+                SortBy.NAME -> currentList.sortedBy { it.name }
+                SortBy.CAFFEINE -> currentList.sortedByDescending { it.caffeineContent }
+            }
+            _coffeeVariations.postValue(sortedList)
         }
-        _coffeeVariations.postValue(sortedList)
     }
 }

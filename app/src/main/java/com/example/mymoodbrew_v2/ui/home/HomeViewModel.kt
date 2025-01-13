@@ -23,12 +23,11 @@ class HomeViewModel @Inject constructor(
         val result = MutableLiveData<CoffeeRecipe>()
         viewModelScope.launch(Dispatchers.IO) {
             val recommendedCoffee = recommendationDao.getRandomRecommendedCoffee(userId)
-            result.postValue(recommendedCoffee) // Use postValue to update LiveData from a background thread
+            result.postValue(recommendedCoffee)
         }
         return result
     }
 
-    // Get weekly special asynchronously
     fun getWeeklySpecial(): LiveData<CoffeeRecipe> {
         val result = MutableLiveData<CoffeeRecipe>()
         viewModelScope.launch(Dispatchers.IO) {
