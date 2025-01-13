@@ -11,7 +11,9 @@ import dagger.hilt.InstallIn
 import dagger.hilt.android.HiltAndroidApp
 import dagger.hilt.components.SingletonComponent
 import javax.inject.Inject
-
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 @HiltAndroidApp
 class MyMoodBrew : Application() {
@@ -22,13 +24,15 @@ class MyMoodBrew : Application() {
     override fun onCreate() {
         super.onCreate()
 
-        try {
-            // Seed the database using the injected database instance
-            DataSeeder.seedDatabase(appDatabase)
+        CoroutineScope(Dispatchers.IO).launch {
+            try {
+                // Seed the database using the injected database instance
+                DataSeeder.seedDatabase(appDatabase)
 
-            Log.d("MyMoodBrew", "Database initialized successfully")
-        } catch (e: Exception) {
-            Log.e("MyMoodBrew", "Database initialization failed", e)
+                Log.d("MyMoodBrew", "Database initialized successfully")
+            } catch (e: Exception) {
+                Log.e("MyMoodBrew", "Database initialization failed", e)
+            }
         }
     }
 }
