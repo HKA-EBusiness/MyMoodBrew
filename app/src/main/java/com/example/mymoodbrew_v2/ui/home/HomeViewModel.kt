@@ -29,11 +29,11 @@ class HomeViewModel @Inject constructor(
     }
 
     fun getWeeklySpecial(): LiveData<CoffeeRecipe> {
-        val result = MutableLiveData<CoffeeRecipe>()
+        val result = MutableLiveData<CoffeeRecipe?>()
         viewModelScope.launch(Dispatchers.IO) {
             val weeklySpecial = weeklyRecipeDao.getRandomRecommendedCoffee()
             result.postValue(weeklySpecial)
         }
-        return result
+        return result as LiveData<CoffeeRecipe>
     }
 }
