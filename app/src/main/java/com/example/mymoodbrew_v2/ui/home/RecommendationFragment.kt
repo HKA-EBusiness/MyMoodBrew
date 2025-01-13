@@ -15,6 +15,8 @@ import com.example.mymoodbrew_v2.databinding.FragmentRecommendationBinding
 import com.example.mymoodbrew_v2.models.CoffeeRecipe
 import dagger.hilt.android.AndroidEntryPoint
 import java.net.URLEncoder
+import androidx.lifecycle.lifecycleScope
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class RecommendationFragment : Fragment() {
@@ -41,17 +43,19 @@ class RecommendationFragment : Fragment() {
         val recipePreparation: TextView = binding.recipePreparation
 
         // Fetch data from ViewModel
-        val userId = 1
-        homeViewModel.getRecommendedCoffee(userId).observe(viewLifecycleOwner) { recipe ->
-            if (recipe != null) {
-                updateUI(
-                    recipe,
-                    recipeImage,
-                    recipeTitle,
-                    recipeDescription,
-                    recipeIngredients,
-                    recipePreparation
-                )
+        viewLifecycleOwner.lifecycleScope.launch {
+            val userId = 1
+            homeViewModel.getRecommendedCoffee(userId).observe(viewLifecycleOwner) { recipe ->
+                if (recipe != null) {
+                    updateUI(
+                        recipe,
+                        recipeImage,
+                        recipeTitle,
+                        recipeDescription,
+                        recipeIngredients,
+                        recipePreparation
+                    )
+                }
             }
         }
 

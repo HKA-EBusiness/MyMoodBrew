@@ -14,13 +14,14 @@ interface WeeklyRecipeDao {
     fun getRandom(): WeeklyRecipe
 
     @Query("""
-        SELECT CoffeeRecipe.*
-        FROM WeeklyRecipe
-        INNER JOIN CoffeeRecipe ON WeeklyRecipe.coffeeRecipeId = CoffeeRecipe.recipeId
-        ORDER BY RANDOM()
+        SELECT CoffeeRecipe.* 
+        FROM CoffeeRecipe 
+        INNER JOIN WeeklyRecipe 
+        ON WeeklyRecipe.coffeeRecipeId = CoffeeRecipe.recipeId 
+        ORDER BY RANDOM() 
         LIMIT 1
     """)
-    fun getRandomRecommendedCoffee(): CoffeeRecipe
+    fun getRandomRecommendedCoffee(): CoffeeRecipe?
 
     @Insert
     fun insert(weeklyRecipe: WeeklyRecipe)

@@ -4,43 +4,62 @@
     android:layout_height="match_parent">
 
     <!-- RecyclerView -->
+
+    <!-- Floating Action Button -->
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewCoffeeVariations"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:paddingBottom="56dp"
-        android:clipToPadding="false" />
+        android:clipToPadding="false"
+        android:paddingBottom="56dp" />
 
-    <!-- Floating Action Button -->
+    <!-- Sort by Name Button -->
+
+    <!-- Sort by Caffeine Button -->
+
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fabAddCoffeeVariation"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
+        android:layout_height="82dp"
         android:layout_alignParentTop="true"
-        android:layout_margin="16dp"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="47dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="16dp"
         android:contentDescription="@string/add_coffee_variation"
         android:src="@drawable/ic_add"
         android:tint="@color/white" />
 
-    <!-- Sort by Name Button -->
     <Button
         android:id="@+id/buttonSortByName"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Sort by Name"
+        android:layout_height="59dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentBottom="true"
-        android:layout_margin="16dp" />
+        android:layout_marginStart="26dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="91dp"
+        android:text="Sort by Name" />
 
-    <!-- Sort by Caffeine Button -->
     <Button
         android:id="@+id/buttonSortByCaffeine"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Sort by Caffeine"
+        android:layout_width="163dp"
+        android:layout_height="59dp"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_margin="16dp" />
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="26dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="91dp"
+        android:text="Sort by Caffeine" />
 
 </RelativeLayout>
