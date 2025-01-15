@@ -13,47 +13,47 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class HomeFragment : Fragment() {
 
-    private var _binding: FragmentHomeBinding? = null
-    private val binding get() = _binding!!
+    private lateinit var binding: FragmentHomeBinding
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentHomeBinding.inflate(inflater, container, false)
+        binding = FragmentHomeBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setupViewPager()
+    }
 
-        // Set up ViewPager2 with an adapter
+    private fun setupViewPager() {
         val adapter = HomePagerAdapter(this)
         binding.viewPager.adapter = adapter
 
-        // Link TabLayout with ViewPager2
         TabLayoutMediator(binding.tabLayout, binding.viewPager) { tab, position ->
-            tab.text = when (position) {
-                0 -> "Your Recommendation"
-                1 -> "Weekly Special"
-                else -> null
-            }
+            tab.text = getTabTitle(position)
         }.attach()
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
+    private fun getTabTitle(position: Int): String {
+        return when (position) {
+            0 -> "Your Recommendation"
+            1 -> "Weekly Special"
+            else -> throw IllegalArgumentException("Invalid tab position: $position")
+        }
     }
 
     private class HomePagerAdapter(fragment: Fragment) : FragmentStateAdapter(fragment) {
-        override fun getItemCount(): Int = 2 // Number of tabs
+        override fun getItemCount(): Int = 2
+
         override fun createFragment(position: Int): Fragment {
             return when (position) {
                 0 -> RecommendationFragment()
                 1 -> WeeklySpecialFragment()
-                else -> throw IllegalStateException("Unexpected position $position")
+                else -> throw IllegalStateException("Unexpected position: $position")
             }
         }
     }
