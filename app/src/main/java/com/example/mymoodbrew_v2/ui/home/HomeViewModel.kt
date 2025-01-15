@@ -10,6 +10,7 @@ import com.example.mymoodbrew_v2.models.CoffeeRecipe
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 @HiltViewModel
@@ -18,21 +19,34 @@ class HomeViewModel @Inject constructor(
     private val weeklyRecipeDao: WeeklyRecipeDao
 ) : ViewModel() {
 
-    // Get recommended coffee asynchronously
     fun getRecommendedCoffee(userId: Int): LiveData<CoffeeRecipe> {
         val result = MutableLiveData<CoffeeRecipe>()
-        viewModelScope.launch(Dispatchers.IO) {
-            val recommendedCoffee = recommendationDao.getRandomRecommendedCoffee(userId)
-            result.postValue(recommendedCoffee)
+        viewModelScope.launch {
+            try {
+                val recommendedCoffee = withContext(Dispatchers.IO) {
+                    recommendationDao.getRandomRecommendedCoffee(userId)
+                }
+                result.postValue(recommendedCoffee)
+            } catch (e: Exception) {
+                // Log the error (consider using Timber or similar)
+                e.printStackTrace()
+            }
         }
         return result
     }
 
     fun getWeeklySpecial(): LiveData<CoffeeRecipe?> {
         val result = MutableLiveData<CoffeeRecipe?>()
-        viewModelScope.launch(Dispatchers.IO) {
-            val weeklySpecial = weeklyRecipeDao.getRandomRecommendedCoffee()
-            result.postValue(weeklySpecial)
+        viewModelScope.launch {
+            try {
+                val weeklySpecial = withContext(Dispatchers.IO) {
+                    weeklyRecipeDao.getRandomRecommendedCoffee()
+                }
+                result.postValue(weeklySpecial)
+            } catch (e: Exception) {
+                // Log the error
+                e.printStackTrace()
+            }
         }
         return result
     }
