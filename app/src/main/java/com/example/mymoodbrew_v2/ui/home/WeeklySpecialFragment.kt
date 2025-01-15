@@ -1,5 +1,6 @@
 package com.example.mymoodbrew_v2.ui.home
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -12,8 +13,6 @@ import coil.load
 import com.example.mymoodbrew_v2.R
 import com.example.mymoodbrew_v2.models.CoffeeRecipe
 import dagger.hilt.android.AndroidEntryPoint
-import androidx.lifecycle.lifecycleScope
-import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class WeeklySpecialFragment : Fragment() {
@@ -44,21 +43,20 @@ class WeeklySpecialFragment : Fragment() {
         recipeTitle.setTextColor(resources.getColor(R.color.black, null))
 
         // Fetch data from ViewModel
-        viewLifecycleOwner.lifecycleScope.launch {
-            homeViewModel.getWeeklySpecial().observe(viewLifecycleOwner) { recipe ->
-                recipe ?: return@observe
-                updateUI(
-                    recipe,
-                    recipeImage,
-                    recipeTitle,
-                    recipeDescription,
-                    recipeIngredients,
-                    recipePreparation
-                )
-            }
+        homeViewModel.getWeeklySpecial().observe(viewLifecycleOwner) { recipe ->
+            recipe ?: return@observe
+            updateUI(
+                recipe,
+                recipeImage,
+                recipeTitle,
+                recipeDescription,
+                recipeIngredients,
+                recipePreparation
+            )
         }
     }
 
+    @SuppressLint("SetTextI18n")
     private fun updateUI(
         recipe: CoffeeRecipe,
         recipeImage: ImageView,

@@ -1,5 +1,6 @@
 package com.example.mymoodbrew_v2.ui.home
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -42,20 +43,17 @@ class RecommendationFragment : Fragment() {
         val recipeIngredients: TextView = binding.recipeIngredients
         val recipePreparation: TextView = binding.recipePreparation
 
-        // Fetch data from ViewModel
-        viewLifecycleOwner.lifecycleScope.launch {
-            val userId = 1
-            homeViewModel.getRecommendedCoffee(userId).observe(viewLifecycleOwner) { recipe ->
-                if (recipe != null) {
-                    updateUI(
-                        recipe,
-                        recipeImage,
-                        recipeTitle,
-                        recipeDescription,
-                        recipeIngredients,
-                        recipePreparation
-                    )
-                }
+        val userId = 1
+        homeViewModel.getRecommendedCoffee(userId).observe(viewLifecycleOwner) { recipe ->
+            if (recipe != null) {
+                updateUI(
+                    recipe,
+                    recipeImage,
+                    recipeTitle,
+                    recipeDescription,
+                    recipeIngredients,
+                    recipePreparation
+                )
             }
         }
 
@@ -67,6 +65,7 @@ class RecommendationFragment : Fragment() {
         recipeTitle.setTextColor(resources.getColor(R.color.black, null))
     }
 
+    @SuppressLint("SetTextI18n")
     private fun updateUI(
         recipe: CoffeeRecipe,
         recipeImage: ImageView,
