@@ -46,15 +46,16 @@ class WeeklySpecialFragment : Fragment() {
         // Fetch data from ViewModel
         viewLifecycleOwner.lifecycleScope.launch {
             homeViewModel.getWeeklySpecial().observe(viewLifecycleOwner) { recipe ->
-                recipe ?: return@observe
-                updateUI(
-                    recipe,
-                    recipeImage,
-                    recipeTitle,
-                    recipeDescription,
-                    recipeIngredients,
-                    recipePreparation
-                )
+                if (recipe != null) {
+                    updateUI(
+                        recipe,
+                        recipeImage,
+                        recipeTitle,
+                        recipeDescription,
+                        recipeIngredients,
+                        recipePreparation
+                    )
+                }
             }
         }
     }
